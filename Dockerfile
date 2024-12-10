@@ -13,8 +13,8 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Build the Angular app
-RUN npm run build --configuration production
+# Build the Angular app using the correct configuration
+RUN npm run build --prod  
 
 # Step 2: Serve the app using Nginx
 FROM nginx:alpine
