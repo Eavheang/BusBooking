@@ -1,0 +1,119 @@
+<div class="min-h-screen bg-white">
+    <!-- Header -->
+    <header class="inset-x-0 top-0 z-50 bg-yellow-700">
+      <nav class="flex items-center justify-center p-6 lg:px-8" aria-label="Global">
+        <div class="flex flex-col lg:flex-row items-center lg:justify-center gap-4 lg:gap-12">
+          <a href="#" class="-m-1.5 p-1.5">
+            <span class="sr-only">Bus Booking</span>
+            <span class="text-white text-lg font-bold">Bus Booking</span>
+          </a>
+          <div class="flex flex-col lg:flex-row lg:gap-12 gap-4 mt-4 lg:mt-0">
+            <a routerLink="" class="text-sm font-semibold leading-6 text-white">Home</a>
+            <a href="#" class="text-sm font-semibold leading-6 text-white">Contact</a>
+            <a href="#" class="text-sm font-semibold leading-6 text-white">About Us</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+  
+    <!-- Available Buses Section -->
+    <div class="container mx-auto p-4">
+      <h1 class="text-2xl font-semibold mb-4 text-center">Available Buses</h1>
+  
+      <p class="mb-4 text-center">
+        From: <strong>{{ from }}</strong> to <strong>{{ to }}</strong> on <strong>{{ goDate }}</strong>
+      </p>
+  
+      <!-- Bus Details Container -->
+      <div class="bg-white border border-gray-200 shadow-md rounded-lg p-4">
+        <h2 class="text-xl font-semibold">Luxury Hotel Bus</h2>
+        <p class="text-sm font-medium text-gray-600">Express way</p>
+        <div class="grid grid-cols-2 gap-4 mt-4">
+          <div>
+            <p><strong>Departure Time:</strong> 01:00</p>
+            <p><strong>Arrival Time:</strong> 06:00</p>
+            <p><strong>Boarding:</strong> Bus Station 5</p>
+          </div>
+          <div class="text-right">
+            <p><strong>Trip Info:</strong></p>
+            <p>Enjoy a comfortable ride with our luxury amenities and top-tier service.</p>
+            <button (click)="bookNow()" class="bg-yellow-600 hover:bg-yellow-500 text-white px-4 py-2 mt-4 rounded-md transition duration-200">Book Now</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Repeat for other bus options -->
+      
+  
+        <div class="bg-white border border-gray-200 shadow-md rounded-lg p-4">
+          <h2 class="text-xl font-semibold">SUV 300</h2>
+          <p class="text-sm font-medium text-gray-600">Express way</p>
+          <div class="grid grid-cols-2 gap-4 mt-4">
+            <div>
+              <p><strong>Departure Time:</strong> 02:00</p>
+              <p><strong>Arrival Time:</strong> 07:00</p>
+              <p><strong>Boarding:</strong> Bus Station 6</p>
+            </div>
+            <div class="text-right">
+              <p><strong>Trip Info:</strong></p>
+              <p>Comfortable and fast travel with spacious seating and air-conditioning.</p>
+              <button (click)="bookNow()" class="bg-yellow-600 hover:bg-yellow-500 text-white px-4 py-2 mt-4 rounded-md transition duration-200">Book Now</button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="bg-white border border-gray-200 shadow-md rounded-lg p-4">
+          <h2 class="text-xl font-semibold">Luxury Hotel Bus</h2>
+          <p class="text-sm font-medium text-gray-600">Express way</p>
+          <div class="grid grid-cols-2 gap-4 mt-4">
+            <div>
+              <p><strong>Departure Time:</strong> 03:00</p>
+              <p><strong>Arrival Time:</strong> 08:00</p>
+              <p><strong>Boarding:</strong> Bus Station 7</p>
+            </div>
+            <div class="text-right">
+              <p><strong>Trip Info:</strong></p>
+              <p>Enjoy premium travel with luxury seating, onboard refreshments, and more.</p>
+              <button (click)="bookNow()" class="bg-yellow-600 hover:bg-yellow-500 text-white px-4 py-2 mt-4 rounded-md transition duration-200">Book Now</button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="bg-white border border-gray-200 shadow-md rounded-lg p-4">
+          <h2 class="text-xl font-semibold">SUV 300</h2>
+          <p class="text-sm font-medium text-gray-600">Express way</p>
+          <div class="grid grid-cols-2 gap-4 mt-4">
+            <div>
+              <p><strong>Departure Time:</strong> 04:00</p>
+              <p><strong>Arrival Time:</strong> 09:00</p>
+              <p><strong>Boarding:</strong> Bus Station 8</p>
+            </div>
+            <div class="text-right">
+              <p><strong>Trip Info:</strong></p>
+              <p>A sleek, efficient journey with modern amenities and fast service.</p>
+              <button (click)="bookNow()" class="bg-yellow-600 hover:bg-yellow-500 text-white px-4 py-2 mt-4 rounded-md transition duration-200">Book Now</button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="bg-white border border-gray-200 shadow-md rounded-lg p-4">
+          <h2 class="text-xl font-semibold">Luxury Hotel Bus</h2>
+          <p class="text-sm font-medium text-gray-600">Express way</p>
+          <div class="grid grid-cols-2 gap-4 mt-4">
+            <div>
+              <p><strong>Departure Time:</strong> 05:00</p>
+              <p><strong>Arrival Time:</strong> 10:00</p>
+              <p><strong>Boarding:</strong> Bus Station 9</p>
+            </div>
+            <div class="text-right">
+              <p><strong>Trip Info:</strong></p>
+              <p>Luxury travel for those who appreciate comfort, with top-class service.</p>
+              <button (click)="bookNow()" class="bg-yellow-600 hover:bg-yellow-500 text-white px-4 py-2 mt-4 rounded-md transition duration-200">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+  

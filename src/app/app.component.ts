@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { BookingComponent } from './booking/booking.component'; // Import the standalone BookingComponent
+import { RouterModule } from '@angular/router'; // Import RouterModule
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [BookingComponent], // Include BookingComponent directly
-  template: '<app-booking></app-booking>', // Use the BookingComponent in the template
+  imports: [RouterModule],  // Include RouterModule here
+  template: '<router-outlet></router-outlet>', // Add the router-outlet
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {}
