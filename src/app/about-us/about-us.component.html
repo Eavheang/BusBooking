@@ -1,0 +1,81 @@
+<!-- about.component.html -->
+<div class="min-h-screen bg-white flex flex-col">
+    <!-- Header (unchanged) -->
+    <header class="inset-x-0 top-0 z-50 bg-yellow-700">
+        <nav class="flex items-center justify-center p-6 lg:px-8" aria-label="Global">
+            <div class="flex flex-col lg:flex-row items-center lg:justify-center gap-4 lg:gap-12">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Bus Booking</span>
+                    <span class="text-white text-lg font-bold">Bus Booking</span>
+                </a>
+                <div class="flex flex-col lg:flex-row lg:gap-12 gap-4 mt-4 lg:mt-0">
+                    <a (click)="navigateToHome()" class="text-sm font-semibold leading-6 text-white cursor-pointer">Home</a>
+                    <a (click)="navigateToReview()" class="text-sm font-semibold leading-6 text-white cursor-pointer">Review</a>
+                    <a (click)="navigateToAbout()" class="text-sm font-semibold leading-6 text-white cursor-pointer">About Us</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+  
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto py-12 px-4 text-center">
+      <h2 class="text-4xl font-bold text-gray-800">{{ title }}</h2>
+      <p class="mt-4 text-xl text-gray-600">{{ description }}</p>
+      
+      <div class="mt-12 bg-gray-50 p-8 rounded-lg shadow-lg">
+        <h3 class="text-2xl font-semibold text-gray-700">Our Mission</h3>
+        <p class="mt-2 text-lg text-gray-600">{{ mission }}</p>
+      </div>
+      
+      <div class="mt-12">
+        <h3 class="text-2xl font-semibold text-gray-700">{{ contactTitle }}</h3>
+        <p class="mt-2 text-lg text-gray-600">Email: <a href="mailto:{{ contactEmail }}" class="text-blue-500 hover:text-blue-700">{{ contactEmail }}</a></p>
+        <p class="mt-2 text-lg text-gray-600">Phone: <span class="text-blue-500">{{ contactPhone }}</span></p>
+      </div>
+      
+      <div class="mt-12">
+        <h3 class="text-2xl font-semibold text-gray-700">Why Choose Us?</h3>
+        <ul class="mt-4 list-disc list-inside text-left text-gray-600">
+          <li>Comfortable and modern buses equipped with air conditioning and free Wi-Fi.</li>
+          <li>Affordable prices with no hidden charges.</li>
+          <li>Multiple booking options: online, mobile app, or at the bus station.</li>
+          <li>On-time arrivals and departures for your convenience.</li>
+          <li>24/7 customer support to assist you with any queries.</li>
+        </ul>
+      </div>
+  
+      <!-- Safety and Trust Section -->
+      <div class="mt-12 bg-blue-50 p-8 rounded-lg shadow-md">
+        <h3 class="text-2xl font-semibold text-gray-700">Safety and Trust</h3>
+        <div class="grid md:grid-cols-3 gap-6 mt-6">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-yellow-600 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <h4 class="font-semibold text-lg mb-2">Verified Safety</h4>
+            <p class="text-gray-600 text-sm">All our buses undergo rigorous safety checks and maintenance.</p>
+          </div>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-yellow-600 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+            </svg>
+            <h4 class="font-semibold text-lg mb-2">Secure Payments</h4>
+            <p class="text-gray-600 text-sm">Multiple secure payment options with encryption.</p>
+          </div>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-yellow-600 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <h4 class="font-semibold text-lg mb-2">Transparent Pricing</h4>
+            <p class="text-gray-600 text-sm">No hidden fees. Clear pricing guaranteed.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  
+    <!-- Sticky Footer -->
+    <footer class="bg-gray-800 text-white p-4 text-center">
+        <p>© 2024 Bus Booking. All rights reserved.</p>
+      </footer>
+  </div>

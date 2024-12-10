@@ -24,6 +24,15 @@ export class BookingComponent implements OnInit {
   locations: string[] = ['Phnom Penh', 'Siem Reap', 'Kep', 'Kompot', 'Preah Sihanuk', 'Kirirom'];
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
+  navigateToHome() {
+    this.router.navigate(['/']);
+  }
+  navigateToReview() {
+    this.router.navigate(['/review']);
+  }
+  navigateToAbout() {
+    this.router.navigate(['/about']);
+  }
 
   ngOnInit(): void {
     // Capture the query parameters from the URL

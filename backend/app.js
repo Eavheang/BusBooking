@@ -31,6 +31,16 @@ const bookingSchema = new mongoose.Schema({
 
 const Booking = mongoose.model('Booking', bookingSchema);
 
+// Define Review Schema and Model
+const reviewSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  review: { type: String, required: true },
+  rating: { type: Number, required: true, min: 1, max: 5 },
+}, { timestamps: true });
+
+const Review = mongoose.model('Review', reviewSchema);
+
+
 // Email Transporter Configuration
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
@@ -94,6 +104,71 @@ const sendConfirmationEmail = (to, subject, text) => {
     });
   });
 };
+// Get all reviews
+app.get('/api/reviews', async (req, res) => {
+  try {
+    const reviews = await Review.find();
+    res.status(200).json(reviews);
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    res.status(500).json({ message: 'Error fetching reviews' });
+  }
+});
+
+// Add a new review
+app.post('/api/reviews', async (req, res) => {
+  const { name, review, rating } = req.body;
+
+  if (!name || !review || !rating) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  try {
+    const newReview = new Review({ name, review, rating });
+    await newReview.save();
+    res.status(201).json({ message: 'Review saved successfully', review: newReview });
+  } catch (error) {
+    console.error('Error saving review:', error);
+    res.status(500).json({ message: 'Error saving review' });
+  }
+});
+
+// Update an existing review
+app.put('/api/reviews/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, review, rating } = req.body;
+
+  try {
+    const updatedReview = await Review.findByIdAndUpdate(
+      id,
+      { name, review, rating },
+      { new: true, runValidators: true }
+    );
+    if (!updatedReview) {
+      return res.status(404).json({ message: 'Review not found' });
+    }
+    res.status(200).json({ message: 'Review updated successfully', review: updatedReview });
+  } catch (error) {
+    console.error('Error updating review:', error);
+    res.status(500).json({ message: 'Error updating review' });
+  }
+});
+
+// Delete a review
+app.delete('/api/reviews/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedReview = await Review.findByIdAndDelete(id);
+    if (!deletedReview) {
+      return res.status(404).json({ message: 'Review not found' });
+    }
+    res.status(200).json({ message: 'Review deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting review:', error);
+    res.status(500).json({ message: 'Error deleting review' });
+  }
+});
 
 // Start server
 app.listen(PORT, () => {

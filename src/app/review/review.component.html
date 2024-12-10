@@ -1,0 +1,125 @@
+<div class="min-h-screen bg-white flex flex-col">
+    <!-- Header -->
+    <header class="inset-x-0 top-0 z-50 bg-yellow-700">
+      <nav class="flex items-center justify-center p-6 lg:px-8" aria-label="Global">
+        <div class="flex flex-col lg:flex-row items-center lg:justify-center gap-4 lg:gap-12">
+          <a href="#" class="-m-1.5 p-1.5">
+            <span class="sr-only">Bus Booking</span>
+            <span class="text-white text-lg font-bold">Bus Booking</span>
+          </a>
+          <div class="flex flex-col lg:flex-row lg:gap-12 gap-4 mt-4 lg:mt-0">
+            <a (click)="navigateToHome()" class="text-sm font-semibold leading-6 text-white cursor-pointer">Home</a>
+            <a (click)="navigateToReview()" class="text-sm font-semibold leading-6 text-white cursor-pointer">Review</a>
+            <a (click)="navigateToAbout()" class="text-sm font-semibold leading-6 text-white cursor-pointer">About Us</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+  
+    <!-- Main Content -->
+    <div class="container mx-auto px-6 py-8 flex-grow">
+      <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">User Reviews</h1>
+  
+      <!-- Add Review Button -->
+      <div class="text-center mb-6">
+        <button
+          class="bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-3 px-6 rounded-md shadow-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+          (click)="openReviewForm()"
+        >
+          + Add Review
+        </button>
+      </div>
+  
+      <!-- Review Form (Modal) -->
+      <div
+        *ngIf="showForm"
+        class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+      >
+        <div class="bg-white rounded-lg shadow-lg w-96 p-6">
+          <h2 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit Review</h2>
+          <form (ngSubmit)="saveReview()">
+            <div class="mb-4">
+              <label class="block mb-1 font-medium text-gray-700">Name</label>
+              <input
+                type="text"
+                class="w-full p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 shadow-sm"
+                [(ngModel)]="currentReview.name"
+                name="name"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block mb-1 font-medium text-gray-700">Review</label>
+              <textarea
+                class="w-full p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 shadow-sm"
+                [(ngModel)]="currentReview.review"
+                name="review"
+                required
+              ></textarea>
+            </div>
+            <div class="mb-4">
+              <label class="block mb-1 font-medium text-gray-700">Rating (1-5)</label>
+              <input
+                type="number"
+                class="w-full p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 shadow-sm"
+                [(ngModel)]="currentReview.rating"
+                name="rating"
+                min="1"
+                max="5"
+                required
+              />
+            </div>
+            <div class="flex justify-end space-x-4">
+              <button
+                type="button"
+                class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md shadow-sm"
+                (click)="closeReviewForm()"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-md shadow-lg"
+              >
+                Save
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+  
+      <!-- Review List -->
+      <section class="p-8">
+        <div class="max-w-4xl mx-auto">
+          <div *ngFor="let review of reviews" class="bg-yellow-100 p-4 rounded-lg shadow-sm mb-4">
+            <div class="flex justify-between items-center">
+              <div>
+                <h3 class="text-lg font-bold text-gray-800">{{ review.name }}</h3>
+                <p class="text-gray-600 mb-2">{{ review.review }}</p>
+                <p class="text-yellow-600 font-medium">Rating: {{ review.rating }} / 5</p>
+              </div>
+              <div class="flex space-x-2">
+                <button
+                  class="bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-md shadow-sm"
+                  (click)="editReview(review)"
+                >
+                  Edit
+                </button>
+                <button
+                  class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md shadow-sm"
+                  (click)="deleteReview(review)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-4 text-center">
+      <p>© 2024 Bus Booking. All rights reserved.</p>
+    </footer>
+  </div>

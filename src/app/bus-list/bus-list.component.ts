@@ -13,6 +13,15 @@ export class BusListComponent implements OnInit {
   busTimes: string[] = ['1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM'];
 
   constructor(private route: ActivatedRoute, private router: Router) {}
+  navigateToHome() {
+    this.router.navigate(['/']);
+  }
+  navigateToReview() {
+    this.router.navigate(['/review']);
+  }
+  navigateToAbout() {
+    this.router.navigate(['/about']);
+  }
 
   ngOnInit(): void {
     // Get the query parameters
