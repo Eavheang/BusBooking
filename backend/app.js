@@ -11,10 +11,10 @@ const PORT = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// MongoDB Connection
-const MONGO_URI = 'mongodb://127.0.0.1:27017/busBookings'; // Replace with your MongoDB URI
+// MongoDB Connection (Updated with MongoDB Atlas URI)
+const MONGO_URI = 'mongodb+srv://oengeavheang:bJv0g3ViAptrC1BH@busbooking.rz5ft.mongodb.net/?retryWrites=true&w=majority&appName=BusBooking'; // Use the MongoDB Atlas URI here
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
+  .then(() => console.log('Connected to MongoDB Atlas'))
   .catch((error) => console.error('MongoDB connection error:', error));
 
 // Define Booking Schema and Model
@@ -40,49 +40,48 @@ const reviewSchema = new mongoose.Schema({
 
 const Review = mongoose.model('Review', reviewSchema);
 
-
 // Email Transporter Configuration
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
     user: 'oengeavheang@gmail.com',
-    pass: 'nrga ydob qhlg npzv',
+    pass: 'nrga ydob qhlg npzv', // Ensure to store this password securely
   },
 });
 
 // POST endpoint to confirm booking
 app.post('/api/confirmBooking', async (req, res) => {
-    const { firstName, lastName, email, origin, destination, travelDate, ticketCount, totalPrice } = req.body;
-  
-    if (!firstName || !lastName || !email || !origin || !destination || !travelDate || !ticketCount || !totalPrice) {
-      return res.status(400).json({ message: 'All fields are required.' });
-    }
-  
-    try {
-      console.log('Attempting to save booking to MongoDB...');
-      const booking = new Booking({
-        firstName,
-        lastName,
-        email,
-        origin,
-        destination,
-        travelDate,
-        ticketCount,
-        totalPrice,
-      });
-      await booking.save();
-  
-      console.log('Booking saved to MongoDB. Attempting to send email...');
-      const bookingMessage = `Hello ${firstName} ${lastName},\n\nYour booking has been confirmed.\nFrom: ${origin}\nTo: ${destination}\nTravel Date: ${travelDate}\nTicket Count: ${ticketCount}\nTotal Price: $${totalPrice}\n\nThank you for choosing us!`;
-      await sendConfirmationEmail(email, 'Booking Confirmation', bookingMessage);
-  
-      console.log('Email sent successfully!');
-      res.status(200).json({ message: 'Booking confirmed and saved successfully!' });
-    } catch (error) {
-      console.error('Error confirming booking:', error);
-      res.status(500).json({ message: 'An error occurred while processing your booking.', error: error.message });
-    }
-  });
+  const { firstName, lastName, email, origin, destination, travelDate, ticketCount, totalPrice } = req.body;
+
+  if (!firstName || !lastName || !email || !origin || !destination || !travelDate || !ticketCount || !totalPrice) {
+    return res.status(400).json({ message: 'All fields are required.' });
+  }
+
+  try {
+    console.log('Attempting to save booking to MongoDB...');
+    const booking = new Booking({
+      firstName,
+      lastName,
+      email,
+      origin,
+      destination,
+      travelDate,
+      ticketCount,
+      totalPrice,
+    });
+    await booking.save();
+
+    console.log('Booking saved to MongoDB. Attempting to send email...');
+    const bookingMessage = `Hello ${firstName} ${lastName},\n\nYour booking has been confirmed.\nFrom: ${origin}\nTo: ${destination}\nTravel Date: ${travelDate}\nTicket Count: ${ticketCount}\nTotal Price: $${totalPrice}\n\nThank you for choosing us!`;
+    await sendConfirmationEmail(email, 'Booking Confirmation', bookingMessage);
+
+    console.log('Email sent successfully!');
+    res.status(200).json({ message: 'Booking confirmed and saved successfully!' });
+  } catch (error) {
+    console.error('Error confirming booking:', error);
+    res.status(500).json({ message: 'An error occurred while processing your booking.', error: error.message });
+  }
+});
 
 // Function to send confirmation email
 const sendConfirmationEmail = (to, subject, text) => {
@@ -104,6 +103,7 @@ const sendConfirmationEmail = (to, subject, text) => {
     });
   });
 };
+
 // Get all reviews
 app.get('/api/reviews', async (req, res) => {
   try {
